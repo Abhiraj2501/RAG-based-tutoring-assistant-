@@ -1,9 +1,19 @@
 import os
 import subprocess
+import json
 
 os.makedirs("audios", exist_ok=True)
 
 video_extensions = {".mp4", ".mkv", ".webm", ".mov", ".avi"}
+
+def has_audio(filepath):
+    result = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-print_format", "json",
+         "-show_streams", filepath],
+        capture_output=True, text=True
+    )
+    info = json.loads(result.stdout)
+    return any(s["codec_type"] == "audio" for s in info.get("streams", []))
 
 files = os.listdir("videos")
 for file in files:
@@ -11,12 +21,15 @@ for file in files:
     if ext.lower() not in video_extensions:
         continue
 
+    filepath = f"videos/{file}"
+
+    if not has_audio(filepath):
+        print(f"Skipping (no audio): {file}")
+        continue
+
     try:
-        # Extract YouTube ID from [xxxxx] at the end
         yt_id = name.split("[")[1].split("]")[0]
-        # Extract title — everything before ' ['
         title = name.split(" [")[0].strip()
-        # Clean title for filesystem use
         title = title.replace("/", "-").replace("｜", "-").replace("  ", " ").strip()
     except IndexError:
         print(f"Skipping (unexpected format): {file}")
@@ -24,4 +37,4 @@ for file in files:
 
     output = f"audios/{yt_id}_{title}.mp3"
     print(f"{file} -> {output}")
-    subprocess.run(["ffmpeg", "-i", f"videos/{file}", output], check=True)
+    subprocess.run(["ffmpeg", "-i", filepath, output], check=True)
