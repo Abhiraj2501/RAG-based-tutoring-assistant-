@@ -1,4 +1,4 @@
 import whisper
 model = whisper.load_model("large-v2")
 
-result 
+result = model.transcribe("audio.mp3")
