@@ -1,2 +1,2 @@
 import whisper
-model = whisper.load_model(")
+model = whisper.load_model("large-ve")
