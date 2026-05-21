@@ -25,5 +25,3 @@ for file in files:
     output = f"audios/{yt_id}_{title}.mp3"
     print(f"{file} -> {output}")
     subprocess.run(["ffmpeg", "-i", f"videos/{file}", output], check=True)
-
-    
