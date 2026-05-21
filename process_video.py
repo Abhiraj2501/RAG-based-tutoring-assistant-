@@ -57,4 +57,4 @@ for file in files:
 
     print(f"{file} -> {output}")
     subprocess.run(["ffmpeg", "-i", filepath, output], check=True)
-    counter += 1
+    counter += 1 
