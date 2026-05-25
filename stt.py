@@ -6,4 +6,4 @@ result = model.transcribe(audio = "audios/03_MySQL or Mongo dB.mp3",
                           language='hi',
                           task='translate')
 #check the translate
-print(result["text"]) 
+print(result["text"])
