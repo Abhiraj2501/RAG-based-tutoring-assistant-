@@ -1,4 +1,4 @@
-# RAG Teaching Assistant — Data Science Course
+# RAG Teaching Assistant 
 
 An AI-powered teaching assistant built with Retrieval-Augmented Generation (RAG). It ingests video lectures, transcribes them, indexes the content, and lets students ask questions and get accurate, context-aware answers pulled directly from course material.
 
