@@ -48,7 +48,7 @@ An AI-powered teaching assistant built with Retrieval-Augmented Generation (RAG)
 
 ```bash
 # Clone
-git clone https://github.com/yourusername/rag-teaching-assistant
+git clone https://github.com/Abhiraj2501/RAG-based-teaching-assistant-
 cd rag-teaching-assistant
 
 # Install dependencies
