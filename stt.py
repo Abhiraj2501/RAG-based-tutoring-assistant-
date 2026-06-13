@@ -1,9 +1,19 @@
 import whisper
-#load the model - large-v2
+import json
+
 model = whisper.load_model("large-v2")
 
-result = model.transcribe(audio = "audios/03_MySQL or Mongo dB.mp3",
-                          language='hi',
-                          task='translate')
-#check the translate
-print(result["text"])
+result = model.transcribe(audio = "audios/sample.mp3", 
+                          language="hi",
+                          task="translate",
+                           word_timestamps=False )
+
+ 
+chunks = []
+for segment in result["segments"]:
+    chunks.append({"start": segment["start"], "end": segment["end"], "text": segment["text"]})
+
+print(chunks)
+
+with open("output.json", "w") as f:
+    json.dump(chunks,f)
