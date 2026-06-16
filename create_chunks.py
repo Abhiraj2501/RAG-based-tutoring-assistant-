@@ -17,7 +17,7 @@ for audio in audios:
                               task="translate",
                               word_timestamps=False )
         
-        chunks = []
+        chunks = [] 
         for segment in result["segments"]:
             chunks.append({"number": number, "title":title, "start": segment["start"], "end": segment["end"], "text": segment["text"]})
         
